@@ -2,50 +2,52 @@
 
 ![Screenshot](screenshot.png)
 
-**A simple application for file encryption and decryption written in C.**
+This application is a simple program designed to encrypt and decrypt files using a specific algorithm. The program is written in the C programming language and includes several basic features.
 
-## Features 🚀
+## Features
 
-- Encrypt and decrypt files using a custom key algorithm.
+- Encrypt and decrypt files using a specific key algorithm.
 - Execute basic commands like `ls`, `cd`, and `clear` through a shell.
-- Utilizes a simple calculator interface to access the shell.
-- A basic calculator mode for additional functionality.
+- If the password is incorrect or not provided, it opens a simple calculator.
+- If the password is correct, it opens the encryptor shell.
+- The simple calculator mode is used to conceal the encryptor shell.
+- Includes a basic calculator mode.
 
-## Usage 🛠️
+## Usage
 
-Ensure you have a C compiler like GCC to compile this program.
+Make sure you have a C compiler like GCC to compile this program.
 
-1. **Compile the program**:
+1. Compile the program:
 
     ```bash
     gcc encryptor.c -o encryptor
     ```
 
-2. **Encrypt a file**:
+2. Encrypt a file:
 
     ```bash
     ./encryptor encrypt file_name
     ```
 
-    This will encrypt `file_name` and save it with the `.enc` extension.
+   This will encrypt `file_name` and save it with the `.enc` extension.
 
-3. **Decrypt a file**:
+3. Decrypt a file:
 
     ```bash
     ./encryptor decrypt encrypted_file decrypted_result
     ```
 
-    This will decrypt `encrypted_file` and save the result as `decrypted_result`.
+   This will decrypt `encrypted_file` and save the result as `decrypted_result`.
 
-4. **Run the shell**:
+4. Run the shell:
 
     ```bash
     ./encryptor password
     ```
 
-    Enter the shell mode by providing the correct password. Inside the shell, you can execute commands like `ls`, `cd`, `clear`, and access the simple calculator feature.
+   You will enter the shell mode by providing the correct password. Inside the shell, you can execute commands like `ls`, `cd`, `clear`, and access the simple calculator feature.
 
-## Notes 📝
+## Notes
 
 - **Important**: This application is a simple example and is not intended for real security. Do not use this code for critical or sensitive purposes.
 
@@ -53,7 +55,7 @@ Ensure you have a C compiler like GCC to compile this program.
 
 - Make sure you understand the code well before using or further developing it.
 
-## License 📜
+## License
 
 This project is licensed under the GNU GPL v3. See the [LICENSE](LICENSE) file for more information.
 
