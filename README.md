@@ -8,7 +8,7 @@ This application is a simple program designed to encrypt and decrypt files using
 
 - Encrypt and decrypt files using a specific key algorithm.
 - Execute basic commands like `ls`, `cd`, and `clear` through a shell.
-- If the password is incorrect or not provided, it opens a simple calculator.
+- If the password is incorrect, it opens a simple calculator.
 - If the password is correct, it opens the encryptor shell.
 - The simple calculator mode is used to conceal the encryptor shell.
 - Includes a basic calculator mode.
