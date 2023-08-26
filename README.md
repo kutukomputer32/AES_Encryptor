@@ -59,6 +59,4 @@ This project is licensed under the GNU GPL v3. See the [LICENSE](LICENSE) file f
 
 ---
 
-Created by [Your Name]
-
-Visit my [portfolio website](https://yourwebsite.com) for more projects and information.
+Created by Mr. Gart
