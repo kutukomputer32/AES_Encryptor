@@ -1,6 +1,10 @@
 # Encryptor Application in C
 
+## Screenshot 1
 ![Screenshot](screenshot.png)
+
+## Screenshot 2
+![Screenshot](screenshot2.png)
 
 This application is a simple program designed to encrypt and decrypt files using a specific algorithm. The program is written in the C programming language and includes several basic features.
 
