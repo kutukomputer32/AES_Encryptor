@@ -6,8 +6,8 @@
 #define ASCII_MAGIC "asciichar"
 
 // Magic numbers and key for encryption/decryption
-// Password linuxmint
-char magic[9] = {205, 220, 209, 222, 225, 208, 209, 207, 230};
+// Password 123456789
+char magic[9] = {146, 165, 150, 157, 158, 153, 159, 153, 171};
 char chiper_key[8] = {63, 30, 21, 43, 20, 56, 73, 45};
 
 // Function to display help information
