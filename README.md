@@ -22,30 +22,29 @@ Make sure you have a C compiler like GCC to compile this program.
     ```bash
     gcc encryptor.c -o encryptor
     ```
-
-2. Encrypt a file:
-
-    ```bash
-    ./encryptor encrypt file_name
-    ```
-
-   This will encrypt `file_name` and save it with the `.enc` extension.
-
-3. Decrypt a file:
-
-    ```bash
-    ./encryptor decrypt encrypted_file decrypted_result
-    ```
-
-   This will decrypt `encrypted_file` and save the result as `decrypted_result`.
-
-4. Run the shell:
+2. Run the shell:
 
     ```bash
     ./encryptor password
     ```
 
-   You will enter the shell mode by providing the correct password. Inside the shell, you can execute commands like `ls`, `cd`, `clear`, and access the simple calculator feature.
+3. Encrypt a file:
+
+    ```bash
+    encrypt file_name
+    ```
+
+   This will encrypt `file_name` and save it with the `.enc` extension.
+
+4. Decrypt a file:
+
+    ```bash
+    decrypt encrypted_file decrypted_result
+    ```
+
+   This will decrypt `encrypted_file` and save the result as `decrypted_result`.
+
+   You will enter the shell mode by input the correct password. Inside the shell, you can execute commands like `ls`, `cd`, `clear`, and access the simple calculator feature.
 
 ## Notes
 
