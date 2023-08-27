@@ -10,7 +10,7 @@ This application is a simple program designed to encrypt and decrypt files using
 - Execute basic commands like `ls`, `cd`, and `clear` through a shell.
 - If the password is incorrect, it opens a simple calculator.
 - If the password is correct, it opens the encryptor shell.
-- The simple calculator mode is used to conceal the encryptor shell.
+- The simple calculator mode is used to hide the encryptor shell.
 - Includes a basic calculator mode.
 
 ## Usage
@@ -49,11 +49,9 @@ Make sure you have a C compiler like GCC to compile this program.
 
 ## Notes
 
-- **Important**: This application is a simple example and is not intended for real security. Do not use this code for critical or sensitive purposes.
-
-- The password is used to enter the shell mode, but there is no strong security mechanism in this code. This is just a simple example.
-
 - Make sure you understand the code well before using or further developing it.
+
+- Password to enter the shell "123456789"
 
 ## License
 
@@ -61,4 +59,4 @@ This project is licensed under the GNU GPL v3. See the [LICENSE](LICENSE) file f
 
 ---
 
-Created by Mr. Gart
+Created by Kutu Komputer
