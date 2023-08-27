@@ -6,11 +6,13 @@
 #define ASCII_MAGIC "asciichar"
 
 // Magic numbers and key for encryption/decryption
-//char magic[9] = {201, 220, 215, 213, 206, 213, 155, 145, 166};
 char magic[9] = {146, 165, 150, 157, 158, 153, 159, 153, 171};
 char chiper_key[8] = {63, 30, 21, 43, 20, 56, 73, 45};
-int current_iteration = 0;
-const int iterations_per_update = 1;  // Atur sesuai kebutuhan Anda
+
+void print_version()
+{
+	printf("Encryptor version 0.4.1 Licensed Under GNU GPL v3\nThe GNU General Public License is a free\ncopyleft license for software and other kinds of works.\n\n");
+}
 
 // Function to display help information
 void print_help()
@@ -154,7 +156,7 @@ void parse_command(int argc, char *argv[], char *buf)
 	}
 	else if (!strcmp(argv[0], "version"))
 	{
-		printf("Encryptor version 0.4.1 Licensed Under GNU GPL v3\nThe GNU General Public License is a free\ncopyleft license for software and other kinds of works.\n");
+		print_version();
 	}
 	else if (!strcmp(argv[0], "cd"))
 	{
@@ -194,7 +196,7 @@ void parse_command(int argc, char *argv[], char *buf)
 // Function to start the shell
 void shell()
 {
-	printf("Encryptor version 0.4.1 Licensed Under GNU GPL v3\nThe GNU General Public License is a free\ncopyleft license for software and other kinds of works.\n");
+	print_version();
 
 	char input[256];
 	char tmp[1024];
