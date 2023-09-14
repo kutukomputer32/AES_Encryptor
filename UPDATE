@@ -1,0 +1,7 @@
+version 0.4.1
+- Simple calculator
+- Simple XOR encryption
+
+version 0.4.2
+- AES128 encryption
+- Encrypted file with metadata
