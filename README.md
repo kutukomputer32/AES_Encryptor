@@ -6,20 +6,16 @@
 ## Screenshot 2
 ![Screenshot](screenshot2.png)
 
-This application is a simple program designed to encrypt and decrypt files using a specific algorithm. The program is written in the C programming language and includes several basic features.
+Ini adalah aplikasi yang dapat digunakan untuk enkripsi dan dekripsi dengan AES128. Aplikasi ini diprogram dalam bahasa C dan memiliki beberapa fitur
 
 ## Features
 
-- Encrypt and decrypt files using a specific key algorithm.
-- Execute basic commands like `ls`, `cd`, and `clear` through a shell.
-- If the password is incorrect, it opens a simple calculator.
-- If the password is correct, it opens the encryptor shell.
-- The simple calculator mode is used to hide the encryptor shell.
-- Includes a basic calculator mode.
+- Enkripsi dan dekripsi menggunakan AES128
+- Kalkulator sederhana dapat digunakan untuk menyembunyikan shell encryptor
 
 ## Usage
 
-Make sure you have a C compiler like GCC to compile this program.
+Cara menggunakan di Linux
 
 1. Compile the program:
 
@@ -48,13 +44,17 @@ Make sure you have a C compiler like GCC to compile this program.
 
    This will decrypt `encrypted_file` and save the result as `decrypted_result`.
 
-   You will enter the shell mode by input the correct password. Inside the shell, you can execute commands like `ls`, `cd`, `clear`, and access the simple calculator feature.
+Cara menggunakan di Android
+
+1. Install Termux melalui playstore
+
+2. Install gcc dengan `pkg install clang` di termux
+
+3. Gunakan cara yang sama seperti penggunaanya di Linux
 
 ## Notes
 
-- Make sure you understand the code well before using or further developing it.
-
-- Password to enter the shell "123456789"
+- Password "123456789"
 
 ## License
 
