@@ -4,9 +4,10 @@
 #include <unistd.h>
 #include <stdint.h>
 #include <time.h>
+#include <termios.h>
 #include <openssl/aes.h>
 
-#define ASCII_MAGIC "asciichar"
+#define PASSWORD "12345678"
 #define VERSION_NUMBER "0.4.2"
 #define BUFFER_SIZE 16
 
@@ -50,6 +51,20 @@ void print_help()
 	printf("decrypt		Decrypt a file.\n");
 	printf("getmagic	Get encrypted magic array from ascii.\n");
 	printf("getchiper	Get new chiper array from ascii.\n");
+}
+
+/* reads from keypress, doesn't echo */
+int getch(void)
+{
+    struct termios oldattr, newattr;
+    int ch;
+    tcgetattr( STDIN_FILENO, &oldattr );
+    newattr = oldattr;
+    newattr.c_lflag &= ~( ICANON | ECHO );
+    tcsetattr( STDIN_FILENO, TCSANOW, &newattr );
+    ch = getchar();
+    tcsetattr( STDIN_FILENO, TCSANOW, &oldattr );
+    return ch;
 }
 
 int get_file_size(FILE *f)
@@ -187,14 +202,83 @@ void print_metadata (metadata_t *m)
 	printf("description	: %s\n", m->description);
 }
 
+ssize_t input_getpasswd (char **pw, size_t sz, int mask, FILE *fp)
+{
+    if (!pw || !sz || !fp) return -1;       /* validate input   */
+#ifdef MAXPW
+    if (sz > MAXPW) sz = MAXPW;
+#endif
+
+    if (*pw == NULL) {              /* reallocate if no address */
+        void *tmp = realloc (*pw, sz * sizeof **pw);
+        if (!tmp)
+            return -1;
+        memset (tmp, 0, sz);    /* initialize memory to 0   */
+        *pw =  (char*) tmp;
+    }
+
+    size_t idx = 0;         /* index, number of chars in read   */
+    int c = 0;
+
+    struct termios old_kbd_mode;    /* orig keyboard settings   */
+    struct termios new_kbd_mode;
+
+    if (tcgetattr (0, &old_kbd_mode)) { /* save orig settings   */
+        fprintf (stderr, "%s() error: tcgetattr failed.\n", __func__);
+        return -1;
+    }   /* copy old to new */
+    memcpy (&new_kbd_mode, &old_kbd_mode, sizeof(struct termios));
+
+    new_kbd_mode.c_lflag &= ~(ICANON | ECHO);  /* new kbd flags */
+    new_kbd_mode.c_cc[VTIME] = 0;
+    new_kbd_mode.c_cc[VMIN] = 1;
+    if (tcsetattr (0, TCSANOW, &new_kbd_mode)) {
+        fprintf (stderr, "%s() error: tcsetattr failed.\n", __func__);
+        return -1;
+    }
+
+    /* read chars from fp, mask if valid char specified */
+    while (((c = fgetc (fp)) != '\n' && c != EOF && idx < sz - 1) ||
+            (idx == sz - 1 && c == 127))
+    {
+        if (c != 127) {
+            if (31 < mask && mask < 127)    /* valid ascii char */
+                fputc (mask, stdout);
+            (*pw)[idx++] = c;
+        }
+        else if (idx > 0) {         /* handle backspace (del)   */
+            if (31 < mask && mask < 127) {
+                fputc (0x8, stdout);
+                fputc (' ', stdout);
+                fputc (0x8, stdout);
+            }
+            (*pw)[--idx] = 0;
+        }
+    }
+    (*pw)[idx] = 0; /* null-terminate   */
+
+    /* reset original keyboard  */
+    if (tcsetattr (0, TCSANOW, &old_kbd_mode)) {
+        fprintf (stderr, "%s() error: tcsetattr failed.\n", __func__);
+        return -1;
+    }
+
+    if (idx == sz - 1 && c != '\n') /* warn if pw truncated */
+        fprintf (stderr, " (%s() warning: truncated at %zu chars.)\n",
+                __func__, sz - 1);
+
+	printf("\n");
+
+    return idx; /* number of chars in passwd    */
+}
+
 void get_password (char *buf)
 {
 	while(1)
 	{
 		printf("password: ");
 		memset(buf, 0, 128);
-		fgets(buf, 128, stdin);
-		buf[strlen(buf) - 1] = 0;
+		input_getpasswd(&buf, 128, '*', stdin);
 		if (strlen(buf) > 16)
 			printf("password must not exceed 16 characters.\n");
 		else if (strlen(buf) < 8)
@@ -233,8 +317,7 @@ void input_password (char *password, FILE *input_file)
 	{
 		printf("password: ");
 		memset(password, 0, 128);
-		fgets(password, 128, stdin);
-		password[strlen(password) - 1] = 0;
+		input_getpasswd(&password, 128, '*', stdin);
 		if(verify_password(password, input_file) == -1)
 			printf("Error: wrong password, try again.\n");
 		else
@@ -464,35 +547,6 @@ void shell()
 	}
 }
 
-// Function to decrypt ASCII encrypted_magic
-void decrypt_magic(char *buf, char *password)
-{
-	for (int i = 0; i < 9; i++)
-	{
-		buf[i] = encrypted_magic[i] - password[i];
-	}
-	buf[9] = 0;
-}
-
-// Function to verify encrypted_magic and start shell
-void verify_magic(char *password)
-{
-	if (!password)
-		return;
-
-	char buf[9];
-	decrypt_magic(buf, password);
-	if (!strcmp(buf, ASCII_MAGIC))
-	{
-		shell();
-		exit(0);
-	}
-	else
-	{
-		return;
-	}
-}
-
 // Function to simulate a simple calculator
 void calculator()
 {
@@ -512,7 +566,8 @@ void calculator()
 int main(int argc, char *argv[])
 {
 	system("clear");
-	verify_magic(argv[1]);
+	if (!strcmp(argv[1], PASSWORD))
+		shell();
 	calculator();
 	return 0;
 }
