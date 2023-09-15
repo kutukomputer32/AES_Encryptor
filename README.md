@@ -1,4 +1,4 @@
-# Encryptor Application in C
+# Encryptor AES128
 
 ## Screenshot 1
 ![Screenshot](screenshot.png)
@@ -55,9 +55,9 @@ Cara menggunakan di Android
 
 3. Gunakan cara yang sama seperti penggunaanya di Linux
 
-## Notes
+## Note
 
-- Password "123456789"
+- Password "12345678"
 
 ## License
 
