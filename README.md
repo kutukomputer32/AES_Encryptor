@@ -6,6 +6,9 @@
 ## Screenshot 2
 ![Screenshot](screenshot2.png)
 
+## Screenshot 3
+![Screenshot](screenshot3.png)
+
 Ini adalah aplikasi yang dapat digunakan untuk enkripsi dan dekripsi dengan AES128. Aplikasi ini diprogram dalam bahasa C dan memiliki beberapa fitur
 
 ## Features
