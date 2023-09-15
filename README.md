@@ -66,5 +66,7 @@ This project is licensed under the GNU GPL v3. See the [LICENSE](LICENSE) file f
 ---
 
 Created by Kutu Komputer
+Jangan lupa subcribe channel gw bre
+https://www.youtube.com/channel/UCh4ekiaoZ0KZ98WuwC_VIhQ
 
 Catatan: next update akan menggunakan enkripsi AES256, jadi aplikasi ini bisa untuk menyembunyikan file, untuk menjalankan aplikasi ini di Android kalian harus menggunakan Termux
