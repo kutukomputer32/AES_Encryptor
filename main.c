@@ -16,12 +16,12 @@
 #define AES256 0x20
 
 typedef struct metadata {
-    char filename[128];        // Nama file
-    size_t filesize;           // Ukuran file dalam byte
-    time_t created_timestamp;  // Waktu pembuatan file
-    char encryption_algorithm; // Algoritma enkripsi yang digunakan
-    char encryption_key[16];   // Kunci enkripsi (disimpan secara aman)
-    char description[256];    // Deskripsi file
+    char filename[128];			// Filename
+    size_t filesize;			// File size
+    time_t created_timestamp;	// File timestamp
+    char encryption_algorithm;	// Encryption algorithm
+    char encryption_key[16];	// Encrypted key
+    char description[256];		// File description
 	char reserved[8];
 } metadata_t;
 
@@ -33,11 +33,11 @@ static const uint8_t iv[16] = {
 
 char encrypted_magic[9] = {146, 165, 150, 157, 158, 153, 159, 153, 171};
 char magic[9] = "asciichar";
-char default_description[256] = "Encrypted with encryptor " VERSION_NUMBER " with AES128 encription algorithm";
+char default_description[256] = "Encrypted with Byte Encryptor " VERSION_NUMBER " with AES128 encription algorithm";
 
 void print_version()
 {
-	printf("Encryptor version " VERSION_NUMBER " Licensed Under GNU GPL v3\nThe GNU General Public License is a free\ncopyleft license for software and other kinds of works.\n\n");
+	printf("Byte Encryptor version " VERSION_NUMBER " Licensed Under GNU GPL v3\nThe GNU General Public License is a free\ncopyleft license for software and other kinds of works.\n\n");
 }
 
 // Function to display help information
